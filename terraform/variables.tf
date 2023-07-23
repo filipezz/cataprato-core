@@ -14,5 +14,5 @@ variable "ec2_tags" {
   
 }
 variable "ec2_count" {
-    default = "1"
+    default = "1000"
 }
