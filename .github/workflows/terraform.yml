@@ -27,7 +27,7 @@ jobs:
     - name: Zip function
       uses: vimtor/action-zip@v1
       with:
-        files: . func.js
+        files: ./ func.js
         dest: func.zip
 
 
