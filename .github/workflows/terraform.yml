@@ -23,12 +23,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
-    - name: Zip function
-      uses: vimtor/action-zip@v1
-      with:
-        files: func.js
-        dest: func.zip
 
 
     - name: Install Terraform
