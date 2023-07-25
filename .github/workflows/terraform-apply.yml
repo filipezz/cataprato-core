@@ -8,8 +8,31 @@ env:
   CONFIG_DIRECTORY: "./"
 
 jobs:
-  terraform:
-    if: github.repository != 'hashicorp-education/learn-terraform-github-actions'
+  Build-nodejs:
+    uses: ${{ GITHUB_ACTOR }}/${{ GITHUB_REPOSITORY }}/.github/workflows/build.yml@main
+  Plan-terraform:
+    uses: ${{ GITHUB_ACTOR }}/${{ GITHUB_REPOSITORY }}/.github/terraform-plan.yml@main
+    
+  Zip-Dist-Folder:
+    needs: [Build-nodejs]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist.zip dist
+          
+      - name: Checking files
+        run: ls
+          
+  Terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
     permissions:
