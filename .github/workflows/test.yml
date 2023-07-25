@@ -11,6 +11,7 @@ jobs:
   build:
     uses: filipezz/pokedex/.github/workflows/build.yml@main
   test:
+    needs: [build]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
