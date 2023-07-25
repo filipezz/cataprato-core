@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    needs: [Zip-Dist-Folder]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
