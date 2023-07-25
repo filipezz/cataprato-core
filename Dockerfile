@@ -1,4 +1,4 @@
-FROM node:16.17.1-alpine As development
+FROM node:18.17.1-alpine As development
 WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
 RUN npm i --force
