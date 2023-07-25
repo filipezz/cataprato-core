@@ -10,9 +10,9 @@ env:
 
 jobs:
   Build-nodejs:
-    uses: ${{github.repository}}/.github/workflows/build.yml@main
+    uses: ./build.yml@main
   Plan-terraform:
-    uses: ${{github.repository}}/.github/terraform-plan.yml@main
+    uses: ./terraform-plan.yml@main
     
   Zip-Dist-Folder:
     needs: [Build-nodejs]
