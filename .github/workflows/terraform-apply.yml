@@ -9,13 +9,12 @@ env:
   
 
 jobs:
-  Build-nodejs:
+  build:
     uses: ./.github/workflows/build.yml
-  Plan-terraform:
-    uses: ./.github/workflows/terraform-plan.yml
+  
     
-  Zip-Dist-Folder:
-    needs: [Build-nodejs]
+  zip:
+    needs: [build]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -32,13 +31,16 @@ jobs:
           
       - name: Checking files
         run: ls
-          
+  plan:
+    uses: ./.github/workflows/terraform-plan.yml
+    needs: [zip]
+    
   Terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    needs: [Zip-Dist-Folder]
+    needs: [plan]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
