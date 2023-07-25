@@ -18,7 +18,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist-${{ github.sha }}
-          run: ls
+          
+      - name: Checking files  
+        run: ls
 
      
       
