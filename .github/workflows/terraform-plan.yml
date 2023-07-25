@@ -9,8 +9,7 @@ env:
   CONFIG_DIRECTORY: "./terraform"
 
 jobs:
-  terraform:
-    if: github.repository != 'hashicorp-education/learn-terraform-github-actions'
+  plan:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
     permissions:
