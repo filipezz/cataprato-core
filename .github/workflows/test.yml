@@ -8,6 +8,8 @@ on:
 
 
 jobs:
+  build:
+    uses: pokedex/.github/workflows/build.yml@main
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
