@@ -22,7 +22,10 @@ jobs:
         with:
           name: dist
       - name: Check files
-        run: ls 
+        run: ls
+        
+      - name: Zip Files
+        run: zip -qq -r dist.zip . 
  
   plan:
     uses: ./.github/workflows/terraform-plan.yml
