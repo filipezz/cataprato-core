@@ -4,7 +4,7 @@ on: workflow_call
 
 env:
   TF_CLOUD_ORGANIZATION: "Cataprato"
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
   TF_WORKSPACE: "cataprato-workspace"
   CONFIG_DIRECTORY: "./terraform"
 
@@ -19,7 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+        
+      - name: Expose secret
+        run: echo ${{ secrets.TF_API_TOKEN }} ${{env.TF_API_TOKEN}}
       - name: Upload Configuration
         uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
         id: plan-upload
