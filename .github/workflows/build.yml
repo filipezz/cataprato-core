@@ -32,4 +32,4 @@ jobs:
       with:
         name: dist
         path: dist
-    - run: ls
+    - run: cd dist && ls
