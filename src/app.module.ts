@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { PokemonModule } from './pokemon/pokemon.module';
+import { IngredientModule } from './ingredients/ingredients.module';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [PokemonModule],
+  imports: [IngredientModule],
   controllers: [AppController],
 })
 export class AppModule {}

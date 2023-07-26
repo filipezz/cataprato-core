@@ -7,4 +7,4 @@ import { IngredientsRepository } from './repositories/ingredients.repository';
   controllers: [IngredientsController],
   providers: [IngredientsService, IngredientsRepository],
 })
-export class PokemonModule {}
+export class IngredientModule {}
