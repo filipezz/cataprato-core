@@ -34,7 +34,15 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+        
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
 
+      - name: Zip Files
+        run: zip -qq -r ./terraform/dist.zip dist 
+        
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
