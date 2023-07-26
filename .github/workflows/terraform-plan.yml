@@ -16,6 +16,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    defaults:
+      run:
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,10 +26,8 @@ jobs:
       - name: Check Files
         run: ls
         
-      - name: Enter terraform folder
-        run: cd terraform
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
