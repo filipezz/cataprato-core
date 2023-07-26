@@ -37,7 +37,7 @@ jobs:
           path: dist
 
       - name: Zip Files
-        run: zip -qq -r dist.zip dist  
+        run: zip -qq -r ./terraform/dist.zip dist  
         
       - name: Tree
         run: tree
