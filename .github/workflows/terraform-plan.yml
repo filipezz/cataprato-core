@@ -20,11 +20,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Expose secret
-        run: echo ${{ secrets.TF_API_TOKEN }} ${{env.TF_API_TOKEN}}
-      - name: Upload Configuration
-        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
-        id: plan-upload
+      - uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.2
+        id: upload
         with:
           workspace: ${{ env.TF_WORKSPACE }}
           directory: ${{ env.CONFIG_DIRECTORY }}
