@@ -51,6 +51,5 @@ jobs:
         
       - name: Apply
         id: apply
-        with:
-          run: terraform init && terraform apply -input=false
-          comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
+        run: terraform init && terraform apply -input=false
+
