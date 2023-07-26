@@ -1,1 +1,1 @@
-export class PokemonRepository {}
+export class IngredientsRepository {}
