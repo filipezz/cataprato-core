@@ -41,7 +41,7 @@ jobs:
           path: dist
 
       - name: Zip Files
-        run: zip -qq -r ./terraform/dist.zip dist 
+        run: cd .. && zip -qq -r ./terraform/dist.zip dist 
         
       - name: Terraform Validate
         id: validate
