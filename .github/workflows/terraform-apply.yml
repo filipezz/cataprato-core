@@ -30,6 +30,8 @@ jobs:
   plan:
     uses: ./.github/workflows/terraform-plan.yml
     needs: [zip]
+    secrets: inherit
+
     
   Terraform-apply:
     name: "Terraform Apply"
