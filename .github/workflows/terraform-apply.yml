@@ -31,18 +31,21 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
           
+      - name: Enter terraform dir
+        run: cd terraform
+        
       - name: Create directory
-        run: mkdir app && cd app && ls
+        run:  mkdir app && cd app && ls
         
       - uses: actions/download-artifact@v3
         with:
           name: dist
 
       - name: Zip Files
-        run: zip -qq -r dist.zip . 
+        run: zip -qq -r dist.zip . && cd .. 
         
-      - name: Check files
-        run: cd .. && ls
+      - name: Copy app
+        run: app/dist.zip . && ls
         
       - name: Apply
         id: apply
