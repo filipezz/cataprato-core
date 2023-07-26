@@ -11,37 +11,17 @@ env:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
-  
-    
-  zip:
-    needs: [build]
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: dist
-      - name: Check files
-        run: ls
-        
-      - name: Zip Files
-        run: zip -qq -r dist.zip . 
- 
+
   plan:
     uses: ./.github/workflows/terraform-plan.yml
-    needs: [zip]
     secrets: inherit
-
-    
+   
   Terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
     permissions:
       contents: read
     needs: [plan]
-    defaults:
-      run:
-        working-directory: ${{ env.CONFIG_DIRECTORY }}
     steps:
     
       - uses: actions/checkout@v3
@@ -49,11 +29,23 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      
-      - name: check files
-        run: ls
+          
+      - name: Create directory
+        run: mkdir app && cd app && ls
+        
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+      - name: Zip Files
+        run: zip -qq -r dist.zip . 
+        
+      - name: Check files
+        run: cd .. && ls
         
       - name: Apply
         id: apply
-        run: terraform init && terraform apply -auto-approve
+        run: terraform init && terraform apply -input=false
+
+
 
