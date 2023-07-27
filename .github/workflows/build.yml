@@ -1,6 +1,8 @@
 name: Build Node.js
 
 on: 
+  pull_request:
+    types: [opened, reopened]
   workflow_call:
     inputs:
       runs-on:
@@ -15,6 +17,7 @@ on:
         description: The folder containing the project to build
         type: string
         default: .
+  
 
 jobs:
   build:
@@ -61,6 +64,6 @@ jobs:
    #     name: build-${{ github.event.number }}
    #     path: ${{ inputs.project-folder }}
    #     if-no-files-found: error
-   
+
     - name: Zip Files
       run: zip -qq r dist.zip dist
