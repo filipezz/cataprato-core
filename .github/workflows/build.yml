@@ -24,15 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "${{ inputs.project-folder }}"
+        working-directory: .
 
     steps:
     - uses: actions/checkout@v3
     - run: echo ${{env}}
-    - run: echo ${{inputs}}
+    - run: echo inputs ${{inputs}}
+    - run: echo inputs ${{github.event.inputs}}
     - uses: actions/setup-node@v3
       with:
-        node-version: "${{ inputs.node-version }}"
+        node-version: 18.x
         check-latest: true
 
     - name: Cache node modules
