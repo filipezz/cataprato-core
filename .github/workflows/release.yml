@@ -1,0 +1,23 @@
+name: Release Workflow
+env:
+  CONFIG_DIRECTORY: "./terraform"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: .gitHub/workflows/build.yml@main
+      with:
+        runs-on: "ubuntu-latest"
+    
+    - uses: .github/workflows/terraform-plan.yml@main
+    - uses: .github/workflows/terraform-apply.yml@main
+
+  
