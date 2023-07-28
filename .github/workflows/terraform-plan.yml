@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
     defaults:
       run:
-        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        working-directory: ${{ env.config_directory }}
     steps:
 
       - name: Terraform fmt
