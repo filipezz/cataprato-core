@@ -15,7 +15,9 @@ jobs:
       runs-on: "ubuntu-latest"
   terraform-plan:
     name: Terraform plan
+    needs: [build]
     uses: ./.github/workflows/terraform-plan.yml
   terraform-apply:
     name: Terraform apply
+    needs: [terraform-plan]
     uses: ./.github/workflows/terraform-apply.yml 
