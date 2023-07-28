@@ -1,6 +1,7 @@
 name: "Terraform Apply"
 
 on: 
+  workflow_call:
   workflow_dispatch:
     inputs:
       terraform-version:
