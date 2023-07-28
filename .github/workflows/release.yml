@@ -14,11 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: .github/workflows/build.yml@main
+    - uses: ./.github/workflows/build.yml@main
       with:
         runs-on: "ubuntu-latest"
     
-    - uses: .github/workflows/terraform-plan.yml@main
-    - uses: .github/workflows/terraform-apply.yml@main
+    - uses: ./.github/workflows/terraform-plan.yml@main
+    - uses: ./.github/workflows/terraform-apply.yml@main
 
   
