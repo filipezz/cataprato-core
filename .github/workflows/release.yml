@@ -12,9 +12,9 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - uses: ${{env.github.repository}}/.github/workflows/build.yml
+    - uses: ${{github.repository}}/.github/workflows/build.yml
       with:
         runs-on: "ubuntu-latest"
     
