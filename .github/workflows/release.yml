@@ -1,7 +1,7 @@
 name: Release Workflow
 env:
   CONFIG_DIRECTORY: "./terraform"
-  REPOSITORY: ${{GITHUB_ACTION_REPOSITORY}}
+  REPOSITORY: ${{github.GITHUB_ACTION_REPOSITORY}}
 
 on:
   push:
