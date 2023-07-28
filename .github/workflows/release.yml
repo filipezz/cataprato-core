@@ -1,6 +1,6 @@
 name: Release Workflow
 env:
-  CONFIG_DIRECTORY: "./terraform"
+  config_directory: "./terraform"
 
 on:
   push:
@@ -17,6 +17,8 @@ jobs:
     name: Terraform plan
     needs: [build]
     uses: ./.github/workflows/terraform-plan.yml
+    with:
+      config_directory: ${{env.config_directory}}
   terraform-apply:
     name: Terraform apply
     needs: [terraform-plan]
