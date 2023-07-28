@@ -8,20 +8,14 @@ on:
       - main
 
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:  
-        default: ${{ github.repository }}
-
-
-    - uses: ./.github/workflows/build.yml@main
-      with:
-        runs-on: "ubuntu-latest"
-    
-    - uses: ./.github/workflows/terraform-plan.yml@main
-    - uses: ./.github/workflows/terraform-apply.yml@main
-
-  
+  build:
+    name: Build node
+    uses: ./.github/workflows/build.yml
+    with:
+      runs-on: "ubuntu-latest"
+  terraform-plan:
+    name: Terraform plan
+    uses: ./.github/workflows/terraform-plan.yml
+  terraform-apply:
+    name: Terraform apply
+    uses: ./.github/workflows/terraform-apply.yml 
