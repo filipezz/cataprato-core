@@ -1,7 +1,7 @@
 name: Release Workflow
 env:
   CONFIG_DIRECTORY: "./terraform"
-  REPOSITORY: $GITHUB_ACTION_REPOSITORY
+  REPOSITORY: ${{GITHUB_ACTION_REPOSITORY}}
 
 on:
   push:
@@ -15,6 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo ${{env.REPOSITORY}}
+    - run: echo ${{GITHUB_ACTION_REPOSITORY}}
 #    - uses: ${{env.REPOSITORY}}/.github/workflows/build.yml
  #     with:
   #      runs-on: "ubuntu-latest"
