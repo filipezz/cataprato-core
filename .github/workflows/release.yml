@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: .gitHub/workflows/build.yml@main
+    - uses: ${{ github.action_repository}}/.gitHub/workflows/build.yml
       with:
         runs-on: "ubuntu-latest"
     
-    - uses: .github/workflows/terraform-plan.yml@main
-    - uses: .github/workflows/terraform-apply.yml@main
+    - uses: ${{ github.action_repository	}}/.github/workflows/terraform-plan.yml
+    - uses: ${{ github.action_repository	}}/.github/workflows/terraform-apply.yml
 
   
