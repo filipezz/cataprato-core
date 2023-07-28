@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:  
+        default: ${{ github.repository }}
+
 
     - uses: ./.github/workflows/build.yml@main
       with:
