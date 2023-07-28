@@ -15,11 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo ${{env.REPOSITORY}}
-    - uses: ${{env.REPOSITORY}}/.github/workflows/build.yml
-      with:
-        runs-on: "ubuntu-latest"
-    
-    - uses: ${{env.REPOSITORY}}/.github/workflows/terraform-plan.yml
-    - uses: ${{env.REPOSITORY}}/.github/workflows/terraform-apply.yml
+#    - uses: ${{env.REPOSITORY}}/.github/workflows/build.yml
+ #     with:
+  #      runs-on: "ubuntu-latest"
+   # 
+    #- uses: ${{env.REPOSITORY}}/.github/workflows/terraform-plan.yml
+    #- uses: ${{env.REPOSITORY}}/.github/workflows/terraform-apply.yml
 
   
