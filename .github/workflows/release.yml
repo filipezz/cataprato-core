@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo ${{env.REPOSITORY}}
-    - run: echo ${{GITHUB_ACTION_REPOSITORY}}
+    - run: echo ${{github.GITHUB_ACTION_REPOSITORY}}
 #    - uses: ${{env.REPOSITORY}}/.github/workflows/build.yml
  #     with:
   #      runs-on: "ubuntu-latest"
