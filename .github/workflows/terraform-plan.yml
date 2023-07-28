@@ -1,6 +1,11 @@
 name: "Terraform Plan"
 
-on: workflow_call 
+on: 
+  workflow_call:
+    inputs:
+      config_directory:
+        required: true
+        type: string
 
 jobs:
   plan:
@@ -11,7 +16,7 @@ jobs:
       pull-requests: write
     defaults:
       run:
-        working-directory: ${{ env.config_directory }}
+        working-directory: ${{ inputs.config_directory }}
     steps:
 
       - name: Terraform fmt
