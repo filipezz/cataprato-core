@@ -6,6 +6,10 @@ on:
       - main
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
   build:
     name: Build node
     uses: ./.github/workflows/build.yml
