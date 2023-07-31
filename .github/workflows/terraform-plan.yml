@@ -15,7 +15,6 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - run: actions/checkout@v3
       - run: cd ${{ inputs.config_directory }}
       - name: Terraform fmt
         id: fmt
