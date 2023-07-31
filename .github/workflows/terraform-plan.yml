@@ -14,11 +14,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    defaults:
-      run:
-        working-directory: ${{ inputs.config_directory }}
     steps:
       - run: actions/checkout@v3
+      - run: cd ${{ inputs.config_directory }}
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
