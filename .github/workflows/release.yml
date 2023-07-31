@@ -20,7 +20,7 @@ jobs:
     needs: [build]
     uses: ./.github/workflows/terraform-plan.yml
     with:
-      config_directory: "./terraform"
+      config_directory: "/terraform"
   terraform-apply:
     name: Terraform apply
     needs: [terraform-plan]
