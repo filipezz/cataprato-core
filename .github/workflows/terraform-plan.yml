@@ -16,6 +16,7 @@ jobs:
       pull-requests: write
     steps:
       #- run: cd ${{ inputs.config_directory }}
+      - run: tree
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
