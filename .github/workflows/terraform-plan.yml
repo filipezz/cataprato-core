@@ -9,6 +9,17 @@ on:
         type: string
 
 jobs:
+  app:
+    name: Download Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-${{ github.event.number }}
+          path: dist
+
+      - name: Zip Files
+        run: zip -qq -r dist.zip dist  
   plan:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
