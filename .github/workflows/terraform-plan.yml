@@ -17,11 +17,18 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::350131064538:role/Terraform-Dynamic-Cred
+          role-session-name: samplerolesession
+          aws-region: 'us-east-1'
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          terraform_version: 1.5.0
+          
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
@@ -29,7 +36,9 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: |
+            echo -e "access_key = \"${AWS_ACCESS_KEY_ID}\"\nsecret_key = \"${AWS_SECRET_ACCESS_KEY}\"\ntoken = \"${AWS_SESSION_TOKEN}\"\nregion = \"${AWS_REGION:-${AWS_DEFAULT_REGION}}\"" | tee credentials.auto.tfvars
+            terraform init
                 
       - name: Terraform Validate
         id: validate
@@ -37,7 +46,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: set TF_LOG=DEBUG && terraform plan -no-color
+        run: terraform plan -no-color
 
       - name: Update PR
         uses: actions/github-script@v6
@@ -77,3 +86,10 @@ jobs:
               body: output
             })
             }
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
