@@ -60,12 +60,12 @@ jobs:
     - name: Build
       run: npm run build  --if-present 
            
-   # - name: Upload a Build Artifact
-   #   uses: Actions/upload-artifact@v2.2.2
-   #   with:
-   #     name: build-${{ github.event.number }}
-   #     path: ${{ inputs.project-folder }}
-   #     if-no-files-found: error
+    - name: Upload a Build Artifact
+      uses: Actions/upload-artifact@v2.2.2
+      with:
+        name: build-${{ github.event.number }}
+        path: ${{ inputs.project-folder }}
+        if-no-files-found: error
 
     - name: Zip Files
       run: zip -qq r dist.zip dist
