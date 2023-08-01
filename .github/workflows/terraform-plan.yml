@@ -24,18 +24,17 @@ jobs:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
       contents: read
       pull-requests: write
     steps:
           
       - name: Checkout
         uses: actions/checkout@v3
-          
+      - run: export TF_LOG=DEBUG    
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      #  uses: hashicorp/setup-terraform@v2
+      #  with:
+      #    cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
  
       - name: Terraform fmt
         id: fmt
