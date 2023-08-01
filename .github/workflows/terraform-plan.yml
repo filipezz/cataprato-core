@@ -20,7 +20,15 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
- 
+      
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-${{ github.event.number }}
+          path: dist
+
+      - name: Zip Files
+        run: zip -qq -r dist.zip dist  
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
