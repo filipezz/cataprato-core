@@ -64,7 +64,7 @@ jobs:
       uses: Actions/upload-artifact@v2.2.2
       with:
         name: build-${{ github.event.number }}
-        path: ${{ inputs.project-folder }}
+        path: dist
         if-no-files-found: error
 
     - name: Zip Files
