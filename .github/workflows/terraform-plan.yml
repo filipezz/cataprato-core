@@ -23,18 +23,19 @@ jobs:
   plan:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
+    env:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+      TF_WORKSPACE: "cataprato-workspace"
+      CONFIG_DIRECTORY: "."
     steps:
-          
       - name: Checkout
         uses: actions/checkout@v3
-      - run: export TF_LOG=DEBUG    
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+            
+      - uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.2
+        id: upload
         with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          workspace: ${{ env.TF_WORKSPACE }}
+          directory: ${{ env.CONFIG_DIRECTORY }}
  
       - name: Terraform fmt
         id: fmt
