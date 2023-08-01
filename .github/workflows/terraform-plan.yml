@@ -1,7 +1,6 @@
 name: "Terraform Plan"
 
 on: 
-  workflow_dispatch:
   workflow_call:
     inputs:
       config_directory:
@@ -87,7 +86,3 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
