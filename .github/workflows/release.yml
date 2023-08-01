@@ -17,6 +17,7 @@ jobs:
     uses: ./.github/workflows/terraform-plan.yml
     with:
       config_directory: "/terraform"
+    secrets: inherit
   terraform-apply:
     name: Terraform apply
     needs: [terraform-plan]
