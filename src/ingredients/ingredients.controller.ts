@@ -1,5 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 
@@ -8,12 +7,12 @@ export class IngredientsController {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
   @Get()
-  auebajr(@Payload() createIngredientDto: CreateIngredientDto) {
-    return this.ingredientsService.findAll();
+  async findAll() {
+    return await this.ingredientsService.findAll();
   }
 
-  @MessagePattern('createIngredients')
-  aueba(@Payload() createIngredientDto: CreateIngredientDto) {
-    return this.ingredientsService.findAll();
+  @Post()
+  create(@Body() ingredient: CreateIngredientDto) {
+    return this.ingredientsService.create(ingredient);
   }
 }
