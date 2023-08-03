@@ -67,5 +67,3 @@ jobs:
         path: dist
         if-no-files-found: error
 
-    - name: Zip Files
-      run: zip -qq r dist.zip dist

@@ -25,9 +25,6 @@ jobs:
         with:
           name: build-${{ github.event.number }}
           path: dist
-
-      - name: Zip Files
-        run: zip -qq -r dist.zip dist  
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
