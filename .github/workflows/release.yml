@@ -21,3 +21,4 @@ jobs:
     name: Terraform apply
     needs: [terraform-plan]
     uses: ./.github/workflows/terraform-apply.yml 
+    secrets: inherit
