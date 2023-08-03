@@ -15,7 +15,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - run: actions/checkout@v3
+      - name: Checkout
+      - uses: actions/checkout@v3
+      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -26,15 +28,12 @@ jobs:
         with:
           name: build-${{ github.event.number }}
           path: ${{ inputs.project-folder }}
-
-      - name: Zip Files
-        run: zip -qq -r ./terraform/dist.zip dist  
          
       - name: Terraform apply
         if: github.event.pull_request.merged == true && success()
         continue-on-error: true
         run: |
-          terraform apply -input=false -auto-approve -no-color
+          terraform plan && terraform apply -input=false -auto-approve -no-color
 
 
 
